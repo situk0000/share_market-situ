@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NIFTY 50 LSTM Forecast</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>StockTrendAI Stock Market Forecasting Model(LSTM)</h1>
+        
+        <!-- Navigation Buttons -->
+        <div style="text-align: center; margin-bottom: 30px;">
+            <a href="/" style="text-decoration: none;">
+                <button type="button">ADANIPORTS</button>
+            </a>
+            <a href="/bse" style="text-decoration: none;">
+                <button type="button">BSE SENSEX</button>
+            </a>
+            <button type="button" style="background-color: #e74c3c; cursor: default;">NIFTY 50</button>
+        </div>
+
+        <!-- Stock Info Section -->
+        <div style="background-color: #fff3cd; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+            <h2 style="color: #2c3e50; margin-top: 0;">📊 NIFTY 50 Forecast</h2>
+            <p style="margin: 5px 0;"><strong>AI-Powered LSTM Prediction Model</strong></p>
+            {% if last_close and last_date %}
+            <p style="margin: 5px 0;"><strong>Latest Data:</strong> ₹{{ "%.2f"|format(last_close) }} (as of {{ last_date }})</p>
+            {% endif %}
+        </div>
+
+        <!-- Forecast Form -->
+        <form action="/forecast_nifty" method="post">
+            <label for="days" style="font-size: 18px; font-weight: bold;">Number of Days to Forecast:</label><br><br>
+            <input type="number" id="days" name="days" min="1" max="30" value="5" required>
+            <button type="submit">📈 Generate Forecast</button>
+        </form>
+
+        <!-- Forecast Results -->
+        {% if forecast %}
+        <h2 style="color: #2c3e50; margin-top: 40px;">Forecast for Next {{ days }} Days</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Predicted Close Price (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in forecast %}
+                <tr>
+                    <td>{{ item.Date }}</td>
+                    <td>₹{{ "%.2f"|format(item.pred_close) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p style="text-align: center; color: #7f8c8d; font-style: italic; margin-top: 30px;">
+            Enter the number of days above and click "Generate Forecast" to see predictions
+        </p>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+<style>
+/* General body */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #d924ed 0%, #f5576c 100%);
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+/* Form */
+form {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+input[type="number"] {
+    padding: 8px;
+    font-size: 16px;
+    width: 80px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Submit Button */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin: 0 5px;
+}
+
+button:hover {
+    background-color: #3498db;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+table th {
+    background-color: #2980b9;
+    color: white;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #e0f0ff;
+}
+
+/* Footer Button */
+.footer-button {
+    display: block;
+    width: 200px;
+    margin: 30px auto 0 auto;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #27ae60;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-button:hover {
+    background-color: #2ecc71;
+}
+</style>
