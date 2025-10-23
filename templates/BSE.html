@@ -21,7 +21,7 @@
 
         <!-- Stock Info Section -->
         <div style="background-color: #fff3cd; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
-            <h2 style="color: #2c3e50; margin-top: 0;">📊 BSE SENSEX Forecast</h2>
+            <h2 style="color: #234b74; margin-top: 0;">📊 BSE SENSEX Forecast</h2>
             <p style="margin: 5px 0;"><strong>AI-Powered LSTM Prediction Model</strong></p>
             {% if last_close and last_date %}
             <p style="margin: 5px 0;"><strong>Latest Data:</strong> ₹{{ "%.2f"|format(last_close) }} (as of {{ last_date }})</p>
@@ -37,7 +37,7 @@
 
         <!-- Forecast Results -->
         {% if forecast %}
-        <h2 style="color: #2c3e50; margin-top: 40px;">Forecast for Next {{ days }} Days</h2>
+        <h2 style="color: #294663; margin-top: 40px;">Forecast for Next {{ days }} Days</h2>
         <table>
             <thead>
                 <tr>
