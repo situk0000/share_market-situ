@@ -5,11 +5,22 @@
     <link rel="stylesheet" type="text/css" href="/static/style.css">
 </head>
 <body>
+    <!-- Logout Section -->
+    {% if username %}
+    <div style="position: absolute; top: 20px; right: 20px; display: flex; gap: 15px; align-items: center;">
+        <span style="color: #333; font-weight: bold; font-size: 30px;">Welcome, <strong>{{ username }}</strong>!</span>
+        <a href="/logout" style="padding: 8px 14px; background: #e74c3c; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 24px;">Logout</a>
+    </div>
+    {% endif %}
+
     <div class="container">
         <h1>StockTrendAI Stock Market Forecasting Model(LSTM)</h1>
         
         <!-- Navigation Buttons -->
         <div style="text-align: center; margin-bottom: 30px;">
+            <a href="/" style="text-decoration: none;">
+                <button type="button">ADANIPORTS</button>
+            </a>
             <a href="/bse" style="text-decoration: none;">
                 <button type="button">BSE</button>
             </a>
