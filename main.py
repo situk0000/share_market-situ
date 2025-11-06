@@ -17,7 +17,7 @@ from contextlib import contextmanager
 # ============================================================================
 # Security Setup
 # ============================================================================
-SECRET_KEY = "your-secret-key-change-this-in-production"  # Change this!
+SECRET_KEY = "Gojo Saturo"  # Change this!
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_DAYS = 7
 
